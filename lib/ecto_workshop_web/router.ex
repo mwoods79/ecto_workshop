@@ -17,6 +17,7 @@ defmodule EctoWorkshopWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/recipes", RecipeController
   end
 
   # Other scopes may use custom stacks.
