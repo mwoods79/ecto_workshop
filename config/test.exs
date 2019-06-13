@@ -2,8 +2,6 @@ use Mix.Config
 
 # Configure your database
 config :ecto_workshop, EctoWorkshop.Repo,
-  username: "postgres",
-  password: "postgres",
   database: "ecto_workshop_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
