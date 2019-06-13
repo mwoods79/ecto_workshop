@@ -1,5 +1,26 @@
 <h1>Listing Recipes</h1>
 
+<form action="<%= Routes.recipe_path(@conn, :index) %>" method="get">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title">
+  </div>
+  <div>
+    <label for="prep_time">Prep Time less than:</label>
+    <input type="number" step="1" id="prep_time" name="prep_time">
+  </div>
+  <div>
+    <label for="cook_time">Cook Time less than:</label>
+    <input type="number" step="1" id="cook_time" name="cook_time">
+  </div>
+  <div>
+    <label for="calories">Calories less than:</label>
+    <input type="number" step="1" id="calories" name="calories">
+  </div>
+
+  <button type="submit">Search</button>
+</form>
+
 <table>
   <thead>
     <tr>
