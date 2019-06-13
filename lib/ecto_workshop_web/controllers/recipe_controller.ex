@@ -2,10 +2,11 @@ defmodule EctoWorkshopWeb.RecipeController do
   use EctoWorkshopWeb, :controller
 
   alias EctoWorkshop.Menu
-  alias EctoWorkshop.Menu.Recipe
+  alias EctoWorkshop.Menu.{Recipe, Search}
 
-  def index(conn, _params) do
-    recipes = Menu.list_recipes()
+  def index(conn, params) do
+    search_query = Search.new(params)
+    recipes = Menu.list_recipes(search_query)
     render(conn, "index.html", recipes: recipes)
   end
 

@@ -8,17 +8,31 @@ defmodule EctoWorkshop.Menu do
 
   alias EctoWorkshop.Menu.Recipe
 
-  @doc """
-  Returns the list of recipes.
+  def list_recipes(search_query) do
+    query = search(search_query)
+    Repo.all(query)
+  end
 
-  ## Examples
+  def search(search_query) do
+    query = from(r in Recipe)
+    Enum.reduce(search_query, query, &search(&1, &2))
+  end
 
-      iex> list_recipes()
-      [%Recipe{}, ...]
+  defp search({:title, value}, query) do
+    pattern = "%#{value}%"
+    from q in query, where: ilike(q.title, ^pattern)
+  end
 
-  """
-  def list_recipes do
-    Repo.all(Recipe)
+  defp search({:prep_time, value}, query) do
+    from q in query, where: q.prep_time < ^value
+  end
+
+  defp search({:cook_time, value}, query) do
+    from q in query, where: q.cook_time < ^value
+  end
+
+  defp search({:calories, value}, query) do
+    from q in query, where: q.calories < ^value
   end
 
   @doc """
