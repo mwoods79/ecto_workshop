@@ -20,7 +20,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Source: https://github.com/phoenixframework/phoenix
 
 
-## mac computer trouble shooting:
+## mac computer trouble shooting and Install Instructions:
 ```bash
 {
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
@@ -30,10 +30,15 @@ brew install postgres;
 initdb /usr/local/var/postgres;
 createdb;
 psql -c "CREATE USER postgres SUPERUSER;";
+cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode development && cd ..;
+mix deps.get;
+mix ecto.create;
+mix ecto.migrate;
+mix phx.server;
 }
 ```
 
-## for linux users:
+## Install links for linux users:
 ```bash
 # https://elixir-lang.org/install.html#unix-and-unix-like
 mix local.hex &&
